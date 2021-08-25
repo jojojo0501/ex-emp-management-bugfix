@@ -60,7 +60,7 @@ public class EmployeeService {
 	 * @return 名前をもとに検索された従業員情報
 	 */
 	public List<Employee> searchByName(String name) {
-		return employeeRepository.findByName(name);
+		return employeeRepository.findByLikeName(name);
 
 	}
 }
