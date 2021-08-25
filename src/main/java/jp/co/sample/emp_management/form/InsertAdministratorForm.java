@@ -11,15 +11,18 @@ import javax.validation.constraints.Size;
  */
 public class InsertAdministratorForm {
 	/** 名前 */
-	@Size(min=1,max=50,message="氏名を入力してください。（1文字以上50文字以内）")
+	@Size(min = 1, max = 50, message = "氏名を入力してください。（1文字以上50文字以内）")
 	private String name;
 	/** メールアドレス */
-	@Size(min=1,max=50,message="メールアドレスを入力してください。（1文字以上50文字以内）")
-	@Email(message="Emailの形式が不正です")
+	@Size(min = 1, max = 50, message = "メールアドレスを入力してください。（1文字以上50文字以内）")
+	@Email(message = "Emailの形式が不正です")
 	private String mailAddress;
 	/** パスワード */
-	@Size(min=1,max=127,message="パスワードを入力してください。（1文字以上50文字以内）")
+	@Size(min = 1, max = 127, message = "パスワードを入力してください。（1文字以上50文字以内）")
 	private String password;
+	@Size(min = 1, max = 127, message = "確認用パスワードを入力してください。（1文字以上50文字以内）")
+	/** 確認用パスワード */
+	private String confirmPassword;
 
 	/**
 	 * @return the name
@@ -62,11 +65,19 @@ public class InsertAdministratorForm {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
+
 	@Override
 	public String toString() {
 		return "InsertAdministratorForm [name=" + name + ", mailAddress=" + mailAddress + ", password=" + password
-				+ "]";
+				+ ", confirmPassword=" + confirmPassword + "]";
 	}
-	
+
 }
