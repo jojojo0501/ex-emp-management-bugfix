@@ -73,11 +73,19 @@ public class AdministratorController {
 	 */
 	@RequestMapping("/insert")
 	public String insert(@Validated InsertAdministratorForm form, BindingResult result) {
+
 		// パスワード確認
 		if (!(form.getConfirmPassword().equals(form.getPassword()))) {
 			result.rejectValue("password", "", "パスワードが一致しません。");
 			result.rejectValue("confirmPassword", "", "パスワードが一致しません。");
 		}
+		
+		//メールアドレス重複チェック
+		Administrator dupulicateAdministrator = administratorService.findByMailAddress(form.getMailAddress());
+		if (dupulicateAdministrator != null) {
+			result.rejectValue("mailAddress","","既に登録済みのメールアドレスです。");
+		}
+
 		if (result.hasErrors()) {
 			return toInsert();
 		}
